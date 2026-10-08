@@ -1,26 +1,267 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--bg);
+  --color-bg-2: var(--bg-2);
+  --color-bg-3: var(--bg-3);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-alt: var(--alt);
+  --color-alt-ink: var(--alt-ink);
+  --color-gold: var(--gold);
+  --color-plate: var(--plate);
+  --font-display: var(--f-display);
+  --font-body: var(--f-body);
+  --font-script: var(--font-ruqaa), serif;
+  --radius-card: var(--r-card);
+  --radius-ctl: var(--r-ctl);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Neutral chooser at the root */
+:root {
+  --bg: #efede8;
+  --bg-2: #e6e3dc;
+  --bg-3: #dcd8cf;
+  --surface: #f8f7f4;
+  --ink: #17140f;
+  --muted: #5f5a50;
+  --line: rgba(23, 20, 15, 0.14);
+  --accent: #b4121b;
+  --accent-ink: #fff;
+  --alt: #17140f;
+  --alt-ink: #f8f7f4;
+  --gold: #b8913a;
+  --plate: #000;
+  --f-display: var(--font-alexandria), system-ui, sans-serif;
+  --f-body: var(--font-alexandria), system-ui, sans-serif;
+  --r-card: 14px;
+  --r-ctl: 999px;
+}
+.dark {
+  --bg: #17150f;
+  --bg-2: #1e1b15;
+  --bg-3: #26221b;
+  --surface: #211e18;
+  --ink: #f1ede4;
+  --muted: #aaa294;
+  --line: rgba(241, 237, 228, 0.14);
+}
+
+/* ———————————————— A · Faiyum: sand by day, Lake Qarun by night */
+[data-variant="faiyum"] {
+  --r-card: 4px;
+  --r-ctl: 4px;
+  --bg: #e8cc95;
+  --bg-2: #ddb877;
+  --bg-3: #cfa35d;
+  --surface: #f3e2bb;
+  --ink: #2a190a;
+  --muted: #5e4426;
+  --line: rgba(42, 25, 10, 0.2);
+  --accent: #a3141b;
+  --accent-ink: #fbefd6;
+  --alt: #0d4547;
+  --alt-ink: #f3e2bb;
+  --gold: #8a5a17;
+  --plate: #1a0f05;
+  --f-display: var(--font-alexandria), system-ui, sans-serif;
+  --f-body: var(--font-alexandria), system-ui, sans-serif;
+}
+.dark [data-variant="faiyum"],
+.dark[data-variant="faiyum"] {
+  --bg: #07262a;
+  --bg-2: #0a2f33;
+  --bg-3: #0f3a3f;
+  --surface: #0f363b;
+  --ink: #f1dcae;
+  --muted: #b7a57d;
+  --line: rgba(241, 220, 174, 0.16);
+  --accent: #ec5157;
+  --accent-ink: #1c0606;
+  --alt: #c9964a;
+  --alt-ink: #1f1206;
+  --gold: #d7a85a;
+  --plate: #021416;
+}
+
+/* ———————————————— B · Showroom: white stone by day, LED ceiling by night */
+[data-variant="showroom"] {
+  --r-card: 2px;
+  --r-ctl: 2px;
+  --bg: #e7e5e0;
+  --bg-2: #dedbd4;
+  --bg-3: #d2cec5;
+  --surface: #f5f4f1;
+  --ink: #111111;
+  --muted: #57534c;
+  --line: rgba(17, 17, 17, 0.12);
+  --accent: #b0121b;
+  --accent-ink: #fff;
+  --alt: #6f4426;
+  --alt-ink: #f5ece2;
+  --gold: #a9822f;
+  --plate: #000;
+  --f-display: var(--font-kufi), system-ui, sans-serif;
+  --f-body: var(--font-readex), system-ui, sans-serif;
+}
+.dark [data-variant="showroom"],
+.dark[data-variant="showroom"] {
+  --bg: #141517;
+  --bg-2: #191a1d;
+  --bg-3: #202226;
+  --surface: #1c1e21;
+  --ink: #f1efea;
+  --muted: #a09c94;
+  --line: rgba(241, 239, 234, 0.12);
+  --accent: #e3353e;
+  --accent-ink: #fff;
+  --alt: #8a5a35;
+  --alt-ink: #f5ece2;
+  --gold: #d8b25c;
+  --plate: #000;
+}
+
+/* ———————————————— C · Classic premium dealer */
+[data-variant="classic"] {
+  --r-card: 14px;
+  --r-ctl: 10px;
+  --bg: #ffffff;
+  --bg-2: #f4f6f9;
+  --bg-3: #e9edf2;
+  --surface: #ffffff;
+  --ink: #0f1a2b;
+  --muted: #566174;
+  --line: #e1e5eb;
+  --accent: #c8102e;
+  --accent-ink: #fff;
+  --alt: #0f1a2b;
+  --alt-ink: #ffffff;
+  --gold: #b8913a;
+  --plate: #000;
+  --f-display: var(--font-tajawal), system-ui, sans-serif;
+  --f-body: var(--font-tajawal), system-ui, sans-serif;
+}
+.dark [data-variant="classic"],
+.dark[data-variant="classic"] {
+  --bg: #0c1424;
+  --bg-2: #111b2e;
+  --bg-3: #172339;
+  --surface: #131d31;
+  --ink: #eef2f7;
+  --muted: #9aa6b8;
+  --line: #233150;
+  --accent: #e5394a;
+  --accent-ink: #fff;
+  --alt: #eef2f7;
+  --alt-ink: #0c1424;
+}
+
+html {
+  background: var(--bg);
+  color-scheme: light;
+}
+html.dark {
+  color-scheme: dark;
+}
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--f-body);
+  min-height: 100dvh;
+  text-rendering: optimizeLegibility;
+}
+[data-variant] {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--f-body);
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+* {
+  scrollbar-color: color-mix(in oklab, var(--ink) 35%, transparent) transparent;
+  scrollbar-width: thin;
+}
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+input,
+select,
+textarea {
+  caret-color: var(--accent);
+}
+input[type="range"] {
+  accent-color: var(--accent);
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+
+@keyframes sweep {
+  from {
+    transform: translateX(0) skewX(-14deg);
+  }
+  to {
+    transform: translateX(var(--sweep, 480%)) skewX(-14deg);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes led-pulse {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
